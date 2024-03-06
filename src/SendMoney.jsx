@@ -56,7 +56,7 @@ export default function SendMoney({ fun }) {
       <br />
       <label htmlFor="amount">Amount</label>
       <input
-        type='number'
+        type="number"
         id="amount"
         name="amount"
         value={transInfo.amount}

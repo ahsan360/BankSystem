@@ -1,23 +1,24 @@
 import React from 'react'
-import './App.css' 
+import './App.css'
+import { Link } from 'react-router-dom'
 const Navbar = () => {
   return (
     <nav className="navbar">
       <ul>
         <li>
-          <a href="#addIncome">Add Income</a>
+          <Link to={'/addincome'}>Add Income</Link>
         </li>
         <li>
-          <a href="#addIncome">Transfer Money</a>
+          <Link to={'/transfermoney'}>Transfer Money</Link>
         </li>
         <li>
-          <a href="#addIncome">Add User</a>
+          <Link to={'/adduser'}>Add User</Link>
         </li>
         <li>
-          <a href="#user">Show User Details</a>
+          <Link to={'/details'}>Show User Details</Link>
         </li>
         <li>
-          <a href="#flex">User List</a>
+          <Link to={'/userlist'}>User List</Link>
         </li>
       </ul>
     </nav>

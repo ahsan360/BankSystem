@@ -45,6 +45,7 @@ const IncomeForm = ({ addIncomeTriger }) => {
   // console.log(baseCurrency)
   return (
     <form className="income-form" onSubmit={handleSubmit}>
+      Add Money
       <label htmlFor="id">ID</label>
       <input
         type="text"
@@ -67,7 +68,7 @@ const IncomeForm = ({ addIncomeTriger }) => {
 
       <label htmlFor="amount">Amount</label>
       <input
-        type='number'
+        type="number"
         id="amount"
         name="amount"
         value={formData.amount}

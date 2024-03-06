@@ -13,11 +13,15 @@ import addIncome from './addIncom'
 import AddUser from './AddUser'
 import UserDetails from './UserDetails'
 import UserTable from './UserTable'
+
+import { BrowserRouter as Router } from 'react-router-dom'
+
+import { Link, Route, Routes } from 'react-router-dom'
 function App() {
   const notify = () => toast('Wow so easy!')
 
   let cur = JSON.parse(localStorage.getItem('Data'))
-  const [users,setUser] = useState(cur)
+  const [users, setUser] = useState(cur)
   //======================= Transection ===============================================
   const transection = (transInfo) => {
     const c = check(cur, transInfo)
@@ -64,8 +68,8 @@ function App() {
   }
 
   //======================= AddIncome ===============================================
-  const addIncomeTriger = (formData,rate) => {
-    const c = addIncome(cur, formData,rate)
+  const addIncomeTriger = (formData, rate) => {
+    const c = addIncome(cur, formData, rate)
     if (c) {
       const nwc = [...c]
       const UpdatedData = [...nwc]
@@ -78,24 +82,61 @@ function App() {
     }
   }
   return (
-    <>
-      <div className="App">
-        <Navbar />
-        <div className="adincom">
-          <div id="addIncome" style={{ display: 'flex' }}>
-            <IncomeForm addIncomeTriger={addIncomeTriger} />
-            <SendMoney fun={transection} />
-            <AddUser addUser={addUser} />
-          </div>
-        </div>
+    <Router>
+      <>
+        <div className="App">
+          <Navbar />
 
-        <div id="user" className="UserDetails">
-          <UserDetails users={cur} />
-        </div>
-        <div id ="flex"className="flex">
-          <div id="" className="users">
-            <UserTable users= {users}/>
-            {/* <h1>User</h1>
+          <div className="adincom">
+            <div id="addIncome" style={{ display: 'flex' }}>
+              {/* <IncomeForm addIncomeTriger={addIncomeTriger} />
+            <SendMoney fun={transection} />
+            <AddUser addUser={addUser} /> */}
+              {/* 
+              <Route path="/addincome">
+                <IncomeForm addIncomeTriger={addIncomeTriger} />
+              </Route>
+              <Route path="/transfermoney" element={<SendMoney />} />
+              <Route path="/details" element={<UserDetails />} />
+              <Route path="/userlist" element={<UserTable />} />
+              <Route path="/adduser" element={<AddUser />} /> */}
+              <Routes>
+                <Route
+                  exact
+                  path="/addincome"
+                  element={<IncomeForm addIncomeTriger={addIncomeTriger} />}
+                />
+                <Route
+                  exact
+                  path="/adduser"
+                  element={<AddUser addUser={addUser} />}
+                />
+
+                <Route
+                  path="/transfermoney"
+                  element={<SendMoney fun={transection} />}
+                />
+
+                <Route path="/details" element={<UserDetails users={cur} />} />
+                <Route
+                  exact
+                  path="/userlist"
+                  element={<UserTable users={users} />}
+                />
+                <Route exact path="/" element={<Navbar />} />
+                {/* <Route></Rout>
+                <div id="user" className="UserDetails">
+                  <h1>Search User</h1>
+                  <UserDetails users={cur} />
+                </div> */}
+              </Routes>
+            </div>
+          </div>
+
+          <div id="flex" className="flex">
+            <div id="" className="users">
+              {/* <UserTable users={users} /> */}
+              {/* <h1>User</h1>
             {users
               ? users.map((user) => (
                   <Card
@@ -107,11 +148,12 @@ function App() {
                   />
                 ))
               : null} */}
+            </div>
+            <div className="transfer"></div>
           </div>
-          <div className="transfer"></div>
         </div>
-      </div>
-    </>
+      </>
+    </Router>
   )
 }
 

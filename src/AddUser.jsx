@@ -33,7 +33,7 @@ const AddUser = ({ addUser }) => {
       userName: '',
     })
   }
-
+console.log('hello')
   return (
     <form className="transfer-form" onSubmit={(e) => handleTransaction(e)}>
       <label htmlFor="from">User Name</label>
