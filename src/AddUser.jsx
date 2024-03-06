@@ -25,7 +25,7 @@ const AddUser = ({ addUser }) => {
     if (
       transInfo.userName != '' &&
       !hasNumber(transInfo.userName) &&
-      !hasStr(transInfo.userName)
+      hasStr(transInfo.userName)
     )
       addUser(transInfo)
     else alert('Empty Info')
