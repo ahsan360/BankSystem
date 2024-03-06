@@ -17,6 +17,7 @@ import UserTable from './UserTable'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { Link, Route, Routes } from 'react-router-dom'
+import Welcome from './Welcome'
 function App() {
   const notify = () => toast('Wow so easy!')
 
@@ -123,7 +124,7 @@ function App() {
                   path="/userlist"
                   element={<UserTable users={users} />}
                 />
-                <Route exact path="/" element={<Navbar />} />
+                <Route exact path="/" element={<Welcome />} ></Route>
                 {/* <Route></Rout>
                 <div id="user" className="UserDetails">
                   <h1>Search User</h1>
