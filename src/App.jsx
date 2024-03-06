@@ -88,7 +88,7 @@ function App() {
           <Navbar />
 
           <div className="adincom">
-            <div id="addIncome" style={{ display: 'flex' }}>
+            <div className="addIncome">
               {/* <IncomeForm addIncomeTriger={addIncomeTriger} />
             <SendMoney fun={transection} />
             <AddUser addUser={addUser} /> */}

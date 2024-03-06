@@ -126,7 +126,17 @@ a:hover {
   color: #0056b3;
 }
 .adincom {
-  height: 1000px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.addIncome {
+  padding: 50px;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .UserDetails {
   height: 100%;
