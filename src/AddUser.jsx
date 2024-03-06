@@ -2,7 +2,12 @@ import { useState } from 'react'
 
 const AddUser = ({ addUser }) => {
   const [transInfo, setTransfer] = useState({ userName: '' })
-
+  function hasNumber(str) {
+    return /[0-9]/.test(str)
+  }
+  function hasStr(str) {
+    return /[a-z || A-Z]/.test(str)
+  }
   function handleChange(e) {
     e.preventDefault()
 
@@ -16,26 +21,31 @@ const AddUser = ({ addUser }) => {
   }
   const handleTransaction = (e) => {
     e.preventDefault()
-    addUser(transInfo)
+    // console.log(transInfo)
+    if (
+      transInfo.userName != '' &&
+      !hasNumber(transInfo.userName) &&
+      !hasStr(transInfo.userName)
+    )
+      addUser(transInfo)
+    else alert('Empty Info')
     setTransfer({
       userName: '',
     })
   }
 
   return (
-    <form className="transfer-form">
+    <form className="transfer-form" onSubmit={(e) => handleTransaction(e)}>
       <label htmlFor="from">User Name</label>
       <input
+        type="text"
         id="from"
         name="userName"
         value={transInfo.userName}
         onChange={handleChange}
+        required
       />
-      <button
-        onClick={(e) => handleTransaction(e)}
-        type="submit"
-        value="Submit"
-      >
+      <button type="submit" value="Submit">
         Add User
       </button>
     </form>

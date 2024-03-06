@@ -8,7 +8,7 @@ const Card = ({ id, userName, balance, transactions }) => {
     bal: '',
     cntryname: '',
   })
-  const converterTriger = (rates, cntryName) => {
+  const converterTrigger = (rates, cntryName) => {
     const convertedCurrency = converterFunc(rates, balance)
 
     setBalance({
@@ -32,10 +32,10 @@ const Card = ({ id, userName, balance, transactions }) => {
         </div>
         <div className="">
           <h2>
-            <span className="label">{"Balance "}</span>
+            <span className="label">{'Balance '}</span>
             <span className="value">${balance}</span>
           </h2>
-          <Converter converterTriger={converterTriger} />
+          <Converter converterTrigger={converterTrigger} />
           <br />
           <div>{nwBalance.bal} </div>
           <br />
@@ -54,20 +54,26 @@ const Card = ({ id, userName, balance, transactions }) => {
                   <th>Debit</th>
                   <th>Credit</th>
                   <th>Amount</th>
+                  <th>Currency</th>
                 </tr>
               </thead>
               <tbody>
-                {transactions.map((transaction) => (
-                  <tr key={transaction.id}>
-                    <td>{transaction.date}</td>
-                    <td>
-                      {transaction.SendTo ? transaction.SendTo : 'Diposited'}
-                    </td>
-                    <td>{transaction.debit ? transaction.debit : ''}</td>
-                    <td>{transaction.credit ? transaction.credit : ''}</td>
-                    <td>{transaction.amount}</td>
-                  </tr>
-                ))}
+                {transactions ? (
+                  transactions.map((transaction) => (
+                    <tr key={transaction.id}>
+                      <td>{transaction.date}</td>
+                      <td>
+                        {transaction.SendTo ? transaction.SendTo : 'Diposited'}
+                      </td>
+                      <td>{transaction.debit ? transaction.debit : ''}</td>
+                      <td>{transaction.credit ? transaction.credit : ''}</td>
+                      <td>{transaction.amount}</td>
+                      <td>{transaction.currency}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <></>
+                )}
               </tbody>
             </table>
           </div>

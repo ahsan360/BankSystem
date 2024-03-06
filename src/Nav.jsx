@@ -8,13 +8,16 @@ const Navbar = () => {
           <a href="#addIncome">Add Income</a>
         </li>
         <li>
-          <a href="#transferMoney">Transfer Money</a>
+          <a href="#addIncome">Transfer Money</a>
         </li>
         <li>
-          <a href="#addUser">Add User</a>
+          <a href="#addIncome">Add User</a>
         </li>
         <li>
           <a href="#user">Show User Details</a>
+        </li>
+        <li>
+          <a href="#flex">User List</a>
         </li>
       </ul>
     </nav>

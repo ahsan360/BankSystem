@@ -24,7 +24,9 @@ export default function SendMoney({ fun }) {
   }
   const handleTransaction = (e) => {
     e.preventDefault()
-    fun(transInfo)
+    if (transInfo.sender && transInfo.reciver && transInfo.amount)
+      fun(transInfo)
+    else alert('worong')
     setTransfer({
       sender: '',
       reciver: '',
@@ -33,13 +35,14 @@ export default function SendMoney({ fun }) {
   }
 
   return (
-    <form className="transfer-form">
+    <form className="transfer-form" onSubmit={(e) => handleTransaction(e)}>
       <label htmlFor="from">Sender ID</label>
       <input
         id="from"
         name="sender"
         value={transInfo.sender}
         onChange={handleChange}
+        required
       />
       <br />
       <label htmlFor="to">Receiver ID</label>
@@ -48,18 +51,21 @@ export default function SendMoney({ fun }) {
         name="reciver"
         value={transInfo.reciver}
         onChange={handleChange}
+        required
       />
       <br />
       <label htmlFor="amount">Amount</label>
       <input
+        type='number'
         id="amount"
         name="amount"
         value={transInfo.amount}
         onChange={handleChange}
+        required
       />
       <br />
       <button
-        onClick={(e) => handleTransaction(e)}
+        // onClick={(e) => handleTransaction(e)}
         type="submit"
         value="Submit"
       >

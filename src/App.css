@@ -42,14 +42,14 @@
 }
 .flex {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }
 .users {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 400px;
+  width: 100%;
 }
 .transfer {
   display: flex;
@@ -76,7 +76,11 @@ input {
   padding: 8px;
   margin-bottom: 10px;
 }
-
+select {
+  width: 90%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
 button {
   background-color: #1a2639;
   color: rgb(158, 30, 30);
@@ -115,4 +119,25 @@ li a {
 
 a:hover {
   color: #0056b3;
+}
+.adincom {
+  height: 1000px;
+}
+.UserDetails {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.Details {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  height: 1000px;
+  padding-left: 100px;
+}
+#modal{
+  /* height: 500px;
+  width: 500px;
+  z-index: 2; */
+  /* background-color: #010000; */
 }

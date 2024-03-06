@@ -3,10 +3,15 @@ const check = (arr, transInfo) => {
   const { sender, reciver, amount } = transInfo
   const existSend = arr.findIndex((item) => item.id == sender)
   const existRec = arr.findIndex((item) => item.id == reciver)
-  console.log(existRec,existSend)
-  console.log(sender,reciver)
-  if (existSend === -1 || existRec == -1) {
-    alert('Not Found')
+  console.log(existRec, existSend)
+  console.log(sender, reciver)
+  if (
+    existRec == existSend ||
+    existSend === -1 ||
+    existRec == -1 ||
+    amount <= 0
+  ) {
+    alert('Wrong Submission')
     return 0
   } else if (arr[existSend].balance < amount) {
     alert('Do not have Sufficient Balance')
@@ -24,15 +29,19 @@ const check = (arr, transInfo) => {
 
     newArr[existSend].transection.push({
       date: `${currentDate} ${hour} `,
-      debit: 'Creadited',
+      debit: '',
       amount: amount,
+      credit: 'Creadited',
       SendTo: `${reciver}`,
+      currency: 'USD',
     })
     newArr[existRec].transection.push({
       date: `${currentDate} ${hour} `,
       debit: 'Debited',
       amount: amount,
+      credit: '',
       SendTo: `${sender}`,
+      currency: 'USD',
     })
     return newArr
   }
