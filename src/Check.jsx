@@ -1,10 +1,12 @@
 import App from './App'
-const check = (arr, transInfo) => {
-  const { sender, reciver, amount } = transInfo
+import usdCoversion from './usdConversion'
+const check = (arr, transInfo, rate) => {
+  const { sender, reciver, amount, currency } = transInfo
   const existSend = arr.findIndex((item) => item.id == sender)
   const existRec = arr.findIndex((item) => item.id == reciver)
-  console.log(existRec, existSend)
-  console.log(sender, reciver)
+  // console.log(existRec, existSend)
+  const usdAmount = usdCoversion(amount, rate, currency)
+  console.log(transInfo)
   if (
     existRec == existSend ||
     existSend === -1 ||
@@ -13,13 +15,14 @@ const check = (arr, transInfo) => {
   ) {
     alert('Wrong Submission')
     return 0
-  } else if (arr[existSend].balance < amount) {
+  } else if (arr[existSend].balance < usdAmount) {
     alert('Do not have Sufficient Balance')
     return 0
   } else {
     let newArr = [...arr]
-    newArr[existSend].balance -= Number(amount)
-    newArr[existRec].balance += Number(amount)
+    newArr[existSend].balance -= Number(usdAmount)
+    newArr[existRec].balance += Number(usdAmount)
+
     const today = new Date()
     const month = today.getMonth() + 1
     const year = today.getFullYear()
@@ -33,7 +36,7 @@ const check = (arr, transInfo) => {
       amount: amount,
       credit: 'Creadited',
       SendTo: `${reciver}`,
-      currency: 'USD',
+      currency: currency,
     })
     newArr[existRec].transection.push({
       date: `${currentDate} ${hour} `,
@@ -41,7 +44,7 @@ const check = (arr, transInfo) => {
       amount: amount,
       credit: '',
       SendTo: `${sender}`,
-      currency: 'USD',
+      currency: currency,
     })
     return newArr
   }

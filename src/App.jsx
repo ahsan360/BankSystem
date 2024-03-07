@@ -24,8 +24,8 @@ function App() {
   let cur = JSON.parse(localStorage.getItem('Data'))
   const [users, setUser] = useState(cur)
   //======================= Transection ===============================================
-  const transection = (transInfo) => {
-    const c = check(cur, transInfo)
+  const transection = (transInfo, rate) => {
+    const c = check(cur, transInfo, rate)
     if (c) {
       const nwc = [...c]
       const UpdatedData = [...nwc]
@@ -124,7 +124,7 @@ function App() {
                   path="/userlist"
                   element={<UserTable users={users} />}
                 />
-                <Route exact path="/" element={<Welcome />} ></Route>
+                <Route exact path="/" element={<Welcome />}></Route>
                 {/* <Route></Rout>
                 <div id="user" className="UserDetails">
                   <h1>Search User</h1>

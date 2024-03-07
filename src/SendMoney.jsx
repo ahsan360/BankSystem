@@ -1,14 +1,29 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import './IncomeForm.css'
 import { toast } from 'react-toastify'
+import axios from 'axios'
 
 // eslint-disable-next-line react/prop-types
 export default function SendMoney({ fun }) {
+  const [rate, setRate] = useState([])
+  const [baseCurrency, setCurrency] = useState('BDT')
+  useEffect(() => {
+    const fetchApi = async () => {
+      const res = await axios.get(
+        `https://open.er-api.com/v6/latest/${baseCurrency}`
+      )
+      const newRates = Object.entries(res.data.rates)
+      setRate(newRates)
+    }
+    fetchApi()
+  }, [baseCurrency])
+
   const [transInfo, setTransfer] = useState({
     sender: '',
     reciver: '',
     amount: '',
+    currency:''
   })
 
   function handleChange(e) {
@@ -24,13 +39,15 @@ export default function SendMoney({ fun }) {
   }
   const handleTransaction = (e) => {
     e.preventDefault()
+    console.log(transInfo)
     if (transInfo.sender && transInfo.reciver && transInfo.amount)
-      fun(transInfo)
+      fun(transInfo,rate)
     else alert('worong')
     setTransfer({
       sender: '',
       reciver: '',
       amount: '',
+      currency:''
     })
   }
 
@@ -63,6 +80,21 @@ export default function SendMoney({ fun }) {
         onChange={handleChange}
         required
       />
+
+      <br />
+      <label htmlFor="amount">Currency</label>
+      <select
+        name="currency"
+        value={transInfo.currency}
+        onChange={(e) => (handleChange(e), setCurrency(e.target.value))}
+      >
+        <option />
+        {rate.map((item, index) => (
+          <option key={index} name="currency" value={item[0]}>
+            {item[0]}
+          </option>
+        ))}
+      </select>
       <br />
       <button
         // onClick={(e) => handleTransaction(e)}
