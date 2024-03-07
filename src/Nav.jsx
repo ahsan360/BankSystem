@@ -7,7 +7,7 @@ const Navbar = () => {
       <nav className="navbar">
         <ul>
           <li>
-            <Link to={'/addincome'}>Add Income</Link>
+            <Link to={'/addincome'}>Add Money</Link>
           </li>
           <li>
             <Link to={'/transfermoney'}>Transfer Money</Link>
@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link to={'/adduser'}>Add User</Link>
           </li>
           <li>
-            <Link to={'/details'}>Show User Details</Link>
+            <Link to={'/details'}>User Details</Link>
           </li>
           <li>
             <Link to={'/userlist'}>User List</Link>
