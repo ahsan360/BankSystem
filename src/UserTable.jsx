@@ -34,7 +34,7 @@ const UserTable = ({ users }) => {
                   <td>{index + 1}</td>
                   <td>{user.name}</td>
                   <td>{user.id}</td>
-                  <td>{user.balance}</td>
+                  <td>{user.balance}$</td>
                   <td>
                     <button
                       onClick={() => {
